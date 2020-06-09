@@ -9,7 +9,7 @@
   font-size: 14px;
   background-color: var(--dark-purple);
   border: none;
-  color: #333348;
+  color: var(--white);
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
   width: 250px;
