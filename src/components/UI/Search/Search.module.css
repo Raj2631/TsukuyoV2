@@ -1,0 +1,29 @@
+.Search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Search input {
+  padding: 10px;
+  font-size: 14px;
+  background-color: var(--dark-purple);
+  border: none;
+  color: #333348;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  width: 250px;
+  margin-right: 2rem;
+}
+
+.Search input:focus {
+  outline: none;
+}
+
+.Search i {
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  background-color: var(--dark-purple);
+  padding: 10px 0 10px 10px;
+  color: #333348;
+}

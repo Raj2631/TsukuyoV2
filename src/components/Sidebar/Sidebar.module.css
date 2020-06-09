@@ -1,0 +1,16 @@
+.Sidebar {
+  background-color: #1b1b2f;
+  width: 270px;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  position: fixed;
+}
+
+.Sidebar h1 {
+  color: var(--hot-pink);
+}
+
+.Sidebar span {
+  color: var(--white);
+}
