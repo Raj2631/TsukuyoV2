@@ -1,0 +1,11 @@
+.Container {
+  display: grid;
+  margin: 2rem auto 2rem 5rem;
+  grid-gap: 2rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.Container img {
+  height: 270px;
+  border-radius: 5px;
+}

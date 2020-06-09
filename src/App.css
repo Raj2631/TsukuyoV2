@@ -2,6 +2,6 @@
   text-align: center;
 }
 
-main {
+.App > section {
   margin-left: 270px;
 }
