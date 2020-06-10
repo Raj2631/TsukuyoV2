@@ -1,5 +1,7 @@
 import React from 'react';
 import classes from './Grid.module.css';
+import Card from './Card/Card';
+import { Link } from 'react-router-dom';
 
 type props = {
   animeData: object[] | null;
@@ -10,9 +12,9 @@ function Grid(props: props) {
     <div className={classes.Container}>
       {props.animeData?.map((item: any) => {
         return (
-          props.animeData && (
-            <img key={item.mal_id} src={item.image_url} alt="Anime img" />
-          )
+          <Link to={`/${item.mal_id}`}>
+            <Card key={item.mal_id} anime={item} />
+          </Link>
         );
       })}
     </div>

@@ -5,7 +5,7 @@ import Grid from '../../components/UI/Grid/Grid';
 
 function Popular() {
   const [animeData, setAnimeData] = useState<object[] | null>(null);
-  const [page, pageSet] = useState<number>(1);
+  const [page] = useState<number>(1);
 
   useEffect(() => {
     let setState = true;

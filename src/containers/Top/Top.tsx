@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { API } from '../../utility';
+import Grid from '../../components/UI/Grid/Grid';
 
 function Top() {
   const [animeData, setAnimeData] = useState<object[] | null>(null);
-  const [page, pageSet] = useState<number>(1);
+  const [page] = useState<number>(1);
 
   useEffect(() => {
     let setState = true;
@@ -11,7 +12,6 @@ function Top() {
       try {
         const res = await fetch(`${API}/${page}/tv`);
         const data = await res.json();
-        console.log(data.top);
         if (setState) {
           setAnimeData(data.top);
         }
@@ -26,7 +26,11 @@ function Top() {
     };
   }, [page]);
 
-  return <div></div>;
+  return (
+    <div>
+      <Grid animeData={animeData} />
+    </div>
+  );
 }
 
 export default Top;
