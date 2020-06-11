@@ -42,7 +42,7 @@ function FullDescription(props: props) {
         <>
           <h1 style={{ color: '#fff' }}>{animeData.title}</h1>
           <div className={classes.Flex}>
-            <div style={{ width: '30%' }}>
+            <div style={{ width: '30%', height: '50%' }}>
               <img
                 style={{ height: '100%', width: '100%' }}
                 src={animeData.image_url}
