@@ -12,8 +12,8 @@ function Grid(props: props) {
     <div className={classes.Container}>
       {props.animeData?.map((item: any) => {
         return (
-          <Link to={`/${item.mal_id}`}>
-            <Card key={item.mal_id} anime={item} />
+          <Link  key={item.mal_id}  to={`/${item.mal_id}`}>
+            <Card anime={item} />
           </Link>
         );
       })}
