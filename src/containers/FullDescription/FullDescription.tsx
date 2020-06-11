@@ -8,6 +8,7 @@ interface animeData {
   image_url: string;
   synopsis: string;
   title: string;
+  score: number;
 }
 
 function FullDescription(props: props) {
@@ -52,7 +53,7 @@ function FullDescription(props: props) {
               <h1>Synopsis</h1>
               <p>{animeData.synopsis}</p>
               <h2>
-                <span>Rating:</span> 8/10
+                <span>Rating:</span> {animeData.score}
               </h2>
               <button>Add to favorites</button>
             </div>
