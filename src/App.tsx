@@ -7,6 +7,7 @@ import Popular from './containers/Popular/Popular';
 import Top from './containers/Top/Top';
 import Favorites from './containers/Favorites/Favorites';
 import SearchResults from './components/SearchResults/SearchResults';
+import FullDescription from './containers/FullDescription/FullDescription';
 
 function App() {
   const [searchInput, setSearchInput] = useState('');
@@ -55,6 +56,7 @@ function App() {
             <Route path="/top" component={Top} />
             <Route path="/favorites" component={Favorites} />
             <Route exact path="/search/:query" component={SearchResults} />
+            <Route path="/id/:id" component={FullDescription} />
           </Switch>
         </main>
       </section>

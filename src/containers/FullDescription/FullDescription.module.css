@@ -1,0 +1,52 @@
+.Flex {
+  display: flex;
+  width: 90%;
+  margin: 2rem auto;
+  justify-content: space-evenly;
+  color: var(--white);
+}
+
+.Main {
+  width: 60%;
+  text-align: center;
+}
+
+.Main h1 {
+  color: var(--hot-pink);
+}
+
+.Main p {
+  height: 300px;
+  overflow: auto;
+  text-align: left;
+}
+
+.Main h2 {
+  text-align: left;
+}
+
+.Main > h2 > span {
+  color: #fff;
+}
+
+.Main button {
+  border: none;
+  border-radius: 5px;
+  padding: 0.6rem 2.5rem;
+  cursor: pointer;
+  margin: 1rem auto;
+  outline: none;
+  background-color: var(--hot-pink);
+  color: white;
+  font-size: 16px;
+  transition: all ease 0.3s;
+}
+
+.Main button:hover {
+  background-color: #fff;
+  color: var(--hot-pink);
+}
+
+.Main button:active {
+  transform: scale(0.9);
+}
