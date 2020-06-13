@@ -1,17 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import { RouteComponentProps, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import classes from './FullDescription.module.css';
 
-interface props extends RouteComponentProps {}
-
-interface animeData {
+type animeData = {
   image_url: string;
   synopsis: string;
   title: string;
   score: number;
-}
+};
 
-function FullDescription(props: props) {
+type liked = {
+  title: string;
+  image_url: string;
+  id: any;
+};
+
+type likedArr =
+  | {
+      title: string;
+      image_url: string;
+      id: any;
+    }[]
+  | null;
+
+type props = {
+  liked: likedArr;
+  updateLikedArr: (item: liked) => void;
+};
+
+function FullDescription() {
   const [animeData, setAnimeData] = useState<null | animeData>(null);
   const { id } = useParams();
 
@@ -31,13 +48,14 @@ function FullDescription(props: props) {
     }
 
     fetchData();
+
     return () => {
       setState = false;
     };
   }, [id]);
 
   return (
-    <div>
+    <div style={{ overflow: 'hidden' }}>
       {animeData && (
         <>
           <h1 style={{ color: '#fff' }}>{animeData.title}</h1>
@@ -51,11 +69,13 @@ function FullDescription(props: props) {
             </div>
             <div className={classes.Main}>
               <h1>Synopsis</h1>
-              <p>{animeData.synopsis}</p>
+              <p>
+                {animeData.synopsis.replace('[Written by MAL Rewrite]', '')}
+              </p>
               <h2>
                 <span>Rating:</span> {animeData.score}
               </h2>
-              <button>Add to favorites</button>
+              <button className={classes.NotLiked}>Add favorites</button>
             </div>
           </div>
         </>

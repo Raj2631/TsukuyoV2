@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { RouteComponentProps, useParams } from 'react-router-dom';
-import Grid from '../UI/Grid/Grid';
+import Grid from '../../components/UI/Grid/Grid';
 
 interface props extends RouteComponentProps {}
 
