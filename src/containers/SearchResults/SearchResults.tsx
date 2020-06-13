@@ -8,7 +8,7 @@ function SearchResults(props: props) {
   const [animeData, setAnimeData] = useState<object[] | null>(null);
   const [page] = useState<number>(1);
   const { query } = useParams();
-  console.log(query);
+
   useEffect(() => {
     let setState = true;
     async function fetchData() {

@@ -7,30 +7,27 @@ type animeData = {
   synopsis: string;
   title: string;
   score: number;
+  mal_id: number;
 };
 
 type liked = {
   title: string;
   image_url: string;
-  id: any;
+  mal_id: number;
 };
 
-type likedArr =
-  | {
-      title: string;
-      image_url: string;
-      id: any;
-    }[]
-  | null;
+type likedArr = liked[];
 
 type props = {
-  liked: likedArr;
-  updateLikedArr: (item: liked) => void;
+  addToFav: (item: liked) => void;
+  removeFromFav: (id: number) => void;
+  likedArr: likedArr;
 };
 
-function FullDescription() {
+function FullDescription(props: props) {
   const [animeData, setAnimeData] = useState<null | animeData>(null);
   const { id } = useParams();
+  const [isLiked, setIsLiked] = useState<boolean>();
 
   useEffect(() => {
     let setState = true;
@@ -38,25 +35,52 @@ function FullDescription() {
       try {
         const res = await fetch(`https://api.jikan.moe/v3/anime/${id}`);
         const data = await res.json();
-        console.log(data);
+
         if (setState) {
+          const animeExists = props.likedArr.some(
+            (anime) => anime.mal_id === data.mal_id
+          );
+
+          if (animeExists) {
+            setIsLiked(true);
+          } else setIsLiked(false);
           setAnimeData(data);
         }
       } catch (err) {
         console.log(err);
       }
     }
-
     fetchData();
-
     return () => {
       setState = false;
     };
-  }, [id]);
+  }, [id, props.likedArr]);
+
+  let btn;
+  if (animeData) {
+    const item: liked = {
+      mal_id: animeData.mal_id,
+      image_url: animeData.image_url,
+      title: animeData.title,
+    };
+
+    btn = isLiked ? (
+      <button
+        onClick={() => props.removeFromFav(animeData.mal_id)}
+        className={classes.Liked}
+      >
+        Remove from Favorites
+      </button>
+    ) : (
+      <button onClick={() => props.addToFav(item)} className={classes.NotLiked}>
+        Add to Favorites
+      </button>
+    );
+  }
 
   return (
     <div style={{ overflow: 'hidden' }}>
-      {animeData && (
+      {animeData ? (
         <>
           <h1 style={{ color: '#fff' }}>{animeData.title}</h1>
           <div className={classes.Flex}>
@@ -75,11 +99,11 @@ function FullDescription() {
               <h2>
                 <span>Rating:</span> {animeData.score}
               </h2>
-              <button className={classes.NotLiked}>Add favorites</button>
+              {btn}
             </div>
           </div>
         </>
-      )}
+      ) : null}
     </div>
   );
 }

@@ -12,13 +12,13 @@ import FullDescription from './containers/FullDescription/FullDescription';
 type liked = {
   title: string;
   image_url: string;
-  id: any;
+  mal_id: number;
 };
 
 type likeData = {
   title: string;
   image_url: string;
-  id: string;
+  mal_id: number;
 }[];
 
 function App() {
@@ -55,6 +55,19 @@ function App() {
     setSearch(<Redirect to={`/search/${searchInput}`} />);
   };
 
+  const addDataToLocalStorage = (item: liked) => {
+    const newLikedData = [...likedData, item];
+    localStorage.setItem('data', JSON.stringify(newLikedData));
+    setLikedData(newLikedData);
+  };
+
+  const removeDataFromLocalStorage = (id: number) => {
+    let newLikedData = [...likedData];
+    newLikedData = newLikedData.filter((anime) => anime.mal_id !== id);
+    localStorage.setItem('data', JSON.stringify(newLikedData));
+    setLikedData(newLikedData);
+  };
+
   return (
     <div className="App">
       {search}
@@ -77,7 +90,16 @@ function App() {
               render={() => <Favorites liked={likedData} />}
             />
             <Route exact path="/search/:query" component={SearchResults} />
-            <Route path="/id/:id" render={() => <FullDescription />} />
+            <Route
+              path="/id/:id"
+              render={() => (
+                <FullDescription
+                  addToFav={addDataToLocalStorage}
+                  removeFromFav={removeDataFromLocalStorage}
+                  likedArr={likedData}
+                />
+              )}
+            />
           </Switch>
         </main>
       </section>

@@ -3,7 +3,7 @@ import Grid from '../../components/UI/Grid/Grid';
 
 type props = {
   liked: {
-    id: any;
+    mal_id: any;
     title: string;
     image_url: string;
   }[];
