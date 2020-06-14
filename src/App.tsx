@@ -1,5 +1,5 @@
 import React, { CSSProperties, useState, useEffect } from 'react';
-import { Route, Redirect, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import './App.css';
 import Sidebar from './components/Sidebar/Sidebar';
 import Search from './components/UI/Search/Search';
@@ -23,8 +23,8 @@ type likeData = {
 
 function App() {
   const [searchInput, setSearchInput] = useState('');
-  const [search, setSearch] = useState<any>(null);
   const [likedData, setLikedData] = useState<likeData>([]);
+  const history = useHistory();
 
   const styleToolbar: CSSProperties = {
     height: '100px',
@@ -51,8 +51,8 @@ function App() {
 
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    history.push(`/search/${searchInput}`);
     setSearchInput('');
-    setSearch(<Redirect to={`/search/${searchInput}`} />);
   };
 
   const addDataToLocalStorage = (item: liked) => {
@@ -70,7 +70,6 @@ function App() {
 
   return (
     <div className="App">
-      {search}
       <Sidebar />
       <section>
         <section style={styleToolbar}>

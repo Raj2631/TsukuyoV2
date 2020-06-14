@@ -1,20 +1,26 @@
 import React from 'react';
 import classes from './Grid.module.css';
 import Card from './Card/Card';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 type props = {
-  animeData: object[] | null;
+  animeData: {
+    image_url: string;
+    mal_id: number;
+    title: string;
+  }[];
 };
 
 function Grid(props: props) {
+  const history = useHistory();
+  const clickHandler = (id: number) => {
+    history.push(`/id/${id}`);
+  };
   return (
     <div className={classes.Container}>
-      {props.animeData?.map((item: any) => {
+      {props.animeData.map((item) => {
         return (
-          <Link key={item.mal_id} to={`/id/${item.mal_id}`}>
-            <Card anime={item} />
-          </Link>
+          <Card key={item.mal_id} clickHandle={clickHandler} anime={item} />
         );
       })}
     </div>

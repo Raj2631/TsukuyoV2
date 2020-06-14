@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { RouteComponentProps, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Grid from '../../components/UI/Grid/Grid';
 
-interface props extends RouteComponentProps {}
+type animeData = {
+  image_url: string;
+  mal_id: number;
+  title: string;
+}[];
 
-function SearchResults(props: props) {
-  const [animeData, setAnimeData] = useState<object[] | null>(null);
+function SearchResults() {
+  const [animeData, setAnimeData] = useState<animeData>([]);
   const [page] = useState<number>(1);
   const { query } = useParams();
 
@@ -32,11 +36,7 @@ function SearchResults(props: props) {
     };
   }, [query, page]);
 
-  return (
-    <div>
-      <Grid animeData={animeData} />
-    </div>
-  );
+  return <Grid animeData={animeData} />;
 }
 
 export default SearchResults;

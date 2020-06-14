@@ -10,11 +10,7 @@ type props = {
 };
 
 function Favorites(props: props) {
-  return (
-    <div>
-      <Grid animeData={props.liked} />
-    </div>
-  );
+  return <Grid animeData={props.liked} />;
 }
 
 export default Favorites;

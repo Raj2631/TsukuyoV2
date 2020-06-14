@@ -2,8 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { API } from '../../utility';
 import Grid from '../../components/UI/Grid/Grid';
 
+type animeData = {
+  image_url: string;
+  mal_id: number;
+  title: string;
+}[];
+
 function Top() {
-  const [animeData, setAnimeData] = useState<object[] | null>(null);
+  const [animeData, setAnimeData] = useState<animeData>([]);
   const [page] = useState<number>(1);
 
   useEffect(() => {
@@ -26,11 +32,7 @@ function Top() {
     };
   }, [page]);
 
-  return (
-    <div>
-      <Grid animeData={animeData} />
-    </div>
-  );
+  return <Grid animeData={animeData} />;
 }
 
 export default Top;

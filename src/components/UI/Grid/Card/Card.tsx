@@ -2,12 +2,20 @@ import React from 'react';
 import classes from './Card.module.css';
 
 type props = {
-  anime: any;
+  anime: {
+    image_url: string;
+    mal_id: number;
+    title: string;
+  };
+  clickHandle: (id: number) => void;
 };
 
 function Card(props: props) {
   return (
-    <div className={classes.Card}>
+    <div
+      onClick={() => props.clickHandle(props.anime.mal_id)}
+      className={classes.Card}
+    >
       <img src={props.anime.image_url} alt="Anime img" />
     </div>
   );
