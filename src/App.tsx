@@ -8,6 +8,7 @@ import Top from './containers/Top/Top';
 import Favorites from './containers/Favorites/Favorites';
 import SearchResults from './containers/SearchResults/SearchResults';
 import FullDescription from './containers/FullDescription/FullDescription';
+import HamburgerMenu from './components/UI/HamburgerMenu/HamburgerMenu';
 
 type liked = {
   title: string;
@@ -25,19 +26,13 @@ function App() {
   const [searchInput, setSearchInput] = useState('');
   const [likedData, setLikedData] = useState<likeData>([]);
   const history = useHistory();
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const styleToolbar: CSSProperties = {
     height: '100px',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-  };
-
-  const styleP: CSSProperties = {
-    color: '#c4c4c4',
-    fontWeight: 500,
-    marginLeft: '2rem',
-    fontSize: '18px',
   };
 
   useEffect(() => {
@@ -71,9 +66,12 @@ function App() {
   return (
     <div className="App">
       <Sidebar />
+
       <section>
         <section style={styleToolbar}>
-          <p style={styleP}>Animes</p>
+          <HamburgerMenu />
+
+          <p className="para">Animes</p>
           <Search
             val={searchInput}
             submit={submitHandler}

@@ -37,3 +37,8 @@ function Popular() {
 }
 
 export default Popular;
+
+type obj = {
+  id: number;
+  name: string;
+};

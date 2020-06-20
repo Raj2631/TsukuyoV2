@@ -14,3 +14,9 @@
 .Sidebar span {
   color: var(--white);
 }
+
+@media screen and (max-width: 800px) {
+  .Sidebar {
+    transform: translateX(-100vw);
+  }
+}

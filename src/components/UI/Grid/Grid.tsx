@@ -16,6 +16,7 @@ function Grid(props: props) {
   const clickHandler = (id: number) => {
     history.push(`/id/${id}`);
   };
+
   return (
     <div className={classes.Container}>
       {props.animeData.map((item) => {

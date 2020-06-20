@@ -5,3 +5,22 @@
 .App > section {
   margin-left: 270px;
 }
+.para {
+  color: #c4c4c4;
+  font-weight: 500;
+  margin-left: 2rem;
+  font-size: 18px;
+}
+
+@media screen and (max-width: 800px) {
+  .App > section {
+    margin-left: 0;
+  }
+  .para {
+    display: none;
+  }
+
+  .App main {
+    margin: 0 1rem;
+  }
+}
