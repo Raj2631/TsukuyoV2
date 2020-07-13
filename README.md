@@ -1,4 +1,11 @@
+# Tsukuyo
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## About
+
+This project is basically an anime discover app, it has local storage, search functionality, and various things (maybe i'll make it something like a MAL clone)
+
 
 ## Available Scripts
 
