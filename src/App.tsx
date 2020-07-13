@@ -63,14 +63,16 @@ function App() {
     setLikedData(newLikedData);
   };
 
+  const toggleMenu = () => {
+    setSidebarOpen((prevState) => !prevState);
+  };
+
   return (
     <div className="App">
-      <Sidebar />
-
+      <Sidebar show={sidebarOpen} />
       <section>
         <section style={styleToolbar}>
-          <HamburgerMenu />
-
+          <HamburgerMenu click={toggleMenu} />
           <p className="para">Animes</p>
           <Search
             val={searchInput}

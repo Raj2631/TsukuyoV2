@@ -4,17 +4,15 @@ import { Link } from 'react-router-dom';
 
 import NavItems from './NavItems/NavItems';
 
-function Sidebar() {
+type props = {
+  show: boolean;
+};
+
+function Sidebar(props: props) {
   const logoStyle: CSSProperties = {
     margin: '1.6rem 0',
     fontFamily: 'Titillium Web, sans-serif',
     letterSpacing: 2,
-  };
-
-  const navStyle: CSSProperties = {
-    maxWidth: '130px',
-    margin: '0 auto',
-    textAlign: 'left',
   };
 
   return (
@@ -24,7 +22,7 @@ function Sidebar() {
           TSU<span style={{ fontWeight: 400 }}>KUYO</span>
         </h1>
       </Link>
-      <nav style={navStyle}>
+      <nav>
         <NavItems />
       </nav>
     </header>

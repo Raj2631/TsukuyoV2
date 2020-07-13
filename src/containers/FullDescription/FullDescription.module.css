@@ -52,3 +52,9 @@
 .Main button:active {
   transform: scale(0.9);
 }
+
+@media screen and (max-width: 800px) {
+  .Flex {
+    flex-direction: column;
+  }
+}
