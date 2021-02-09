@@ -17,6 +17,7 @@ function Card(props: props) {
       className={classes.Card}
     >
       <img src={props.anime.image_url} alt="Anime img" />
+      <p className={classes.title}>{props.anime.title}</p>
     </div>
   );
 }

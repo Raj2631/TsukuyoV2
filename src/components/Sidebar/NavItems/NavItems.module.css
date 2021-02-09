@@ -1,3 +1,9 @@
+.NavItems div {
+  color: var(--white);
+  margin-bottom: 2rem;
+  font-size: 20px;
+}
+
 .NavItems a {
   color: var(--white);
 }

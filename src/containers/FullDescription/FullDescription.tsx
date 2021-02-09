@@ -24,9 +24,14 @@ type props = {
   likedArr: likedArr;
 };
 
+interface IRouterParams {
+  id: string;
+}
+
 function FullDescription(props: props) {
   const [animeData, setAnimeData] = useState<null | animeData>(null);
-  const { id } = useParams();
+  const { id } = useParams<IRouterParams>();
+
   const [isLiked, setIsLiked] = useState<boolean>();
 
   useEffect(() => {
@@ -79,17 +84,13 @@ function FullDescription(props: props) {
   }
 
   return (
-    <div style={{ overflow: 'hidden' }}>
-      {animeData ? (
+    <div className={classes.FullDescription}>
+      {animeData && (
         <>
-          <h1 style={{ color: '#fff' }}>{animeData.title}</h1>
+          <h1>{animeData.title}</h1>
           <div className={classes.Flex}>
-            <div style={{ width: '30%', height: '50%' }}>
-              <img
-                style={{ height: '100%', width: '100%' }}
-                src={animeData.image_url}
-                alt={animeData.title}
-              />
+            <div className={classes.box1}>
+              <img src={animeData.image_url} alt={animeData.title} />
             </div>
             <div className={classes.Main}>
               <h1>Synopsis</h1>
@@ -103,7 +104,7 @@ function FullDescription(props: props) {
             </div>
           </div>
         </>
-      ) : null}
+      )}
     </div>
   );
 }

@@ -1,11 +1,13 @@
 .Container {
   display: grid;
-  margin: 2rem 0 2rem 2rem;
-  gap: 3rem;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin: 0 auto;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  row-gap: 3rem;
 }
 
-.Container img {
-  height: 270px;
-  border-radius: 5px;
+@media (max-width: 650px) {
+  .Container {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
 }

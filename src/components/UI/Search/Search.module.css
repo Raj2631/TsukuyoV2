@@ -2,18 +2,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--dark-purple);
+  border-radius: 50px;
+  margin-right: 1rem;
 }
 
 .Search input {
   padding: 10px;
   font-size: 14px;
-  background-color: var(--dark-purple);
   border: none;
   color: var(--white);
-  border-top-right-radius: 50px;
-  border-bottom-right-radius: 50px;
+  background-color: var(--dark-purple);
+  border-radius: 50px;
   width: 250px;
-  margin-right: 1rem;
 }
 
 .Search input:focus {
@@ -21,9 +22,16 @@
 }
 
 .Search i {
+  padding-left: 10px;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
   background-color: var(--dark-purple);
-  padding: 10px 0 10px 10px;
   color: #333348;
+}
+
+@media (max-width: 540px) {
+  .Search input {
+    width: 200px;
+    font-size: 12px;
+  }
 }

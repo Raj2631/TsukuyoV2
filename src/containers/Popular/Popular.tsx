@@ -18,7 +18,6 @@ function Popular() {
       try {
         const res = await fetch(`${API}/${page}/bypopularity`);
         const data = await res.json();
-        console.log(data.top);
         if (setState) {
           setAnimeData(data.top);
         }

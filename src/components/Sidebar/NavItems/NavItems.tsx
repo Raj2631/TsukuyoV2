@@ -1,30 +1,40 @@
-import React, { CSSProperties } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import classes from './NavItems.module.css';
 
-function NavItems() {
-  const styleLinks: CSSProperties = {
-    color: 'var(--white)',
-    marginBottom: '2rem',
-    fontSize: '20px',
-  };
+interface props {
+  closeSidebar: () => void;
+}
+
+function NavItems({ closeSidebar }: props) {
+  const routes = [
+    {
+      path: '/',
+      name: 'Popular',
+      exact: true,
+    },
+    {
+      path: '/top',
+      name: 'Top',
+    },
+    {
+      path: '/favorites',
+      name: 'Favorites',
+    },
+  ];
   return (
     <div className={classes.NavItems}>
-      <div style={styleLinks}>
-        <NavLink exact activeStyle={{ color: '#fff' }} to="/">
-          Popular
-        </NavLink>
-      </div>
-      <div style={styleLinks}>
-        <NavLink activeStyle={{ color: '#fff' }} to="/top">
-          Top
-        </NavLink>
-      </div>
-      <div style={styleLinks}>
-        <NavLink activeStyle={{ color: '#fff' }} to="/favorites">
-          Favorites
-        </NavLink>
-      </div>
+      {routes.map((route) => (
+        <div key={route.path} onClick={closeSidebar}>
+          <NavLink
+            exact={route.exact}
+            to={route.path}
+            activeStyle={{ color: '#fff' }}
+          >
+            {route.name}
+          </NavLink>
+        </div>
+      ))}
     </div>
   );
 }

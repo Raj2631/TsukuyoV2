@@ -9,6 +9,7 @@ import Favorites from './containers/Favorites/Favorites';
 import SearchResults from './containers/SearchResults/SearchResults';
 import FullDescription from './containers/FullDescription/FullDescription';
 import HamburgerMenu from './components/UI/HamburgerMenu/HamburgerMenu';
+import Error from './containers/Error/Error';
 
 type liked = {
   title: string;
@@ -26,7 +27,7 @@ function App() {
   const [searchInput, setSearchInput] = useState('');
   const [likedData, setLikedData] = useState<likeData>([]);
   const history = useHistory();
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebar, setSidebar] = useState(false);
 
   const styleToolbar: CSSProperties = {
     height: '100px',
@@ -64,12 +65,12 @@ function App() {
   };
 
   const toggleMenu = () => {
-    setSidebarOpen((prevState) => !prevState);
+    setSidebar((prevState) => !prevState);
   };
 
   return (
     <div className="App">
-      <Sidebar show={sidebarOpen} />
+      <Sidebar show={sidebar} closeSidebar={toggleMenu} />
       <section>
         <section style={styleToolbar}>
           <HamburgerMenu click={toggleMenu} />
@@ -90,7 +91,7 @@ function App() {
             />
             <Route exact path="/search/:query" component={SearchResults} />
             <Route
-              path="/id/:id"
+              path="/details/:id"
               render={() => (
                 <FullDescription
                   addToFav={addDataToLocalStorage}
@@ -99,6 +100,9 @@ function App() {
                 />
               )}
             />
+            <Route path="/">
+              <Error />
+            </Route>
           </Switch>
         </main>
       </section>

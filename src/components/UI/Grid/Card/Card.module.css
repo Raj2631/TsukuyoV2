@@ -1,15 +1,25 @@
 .Card {
-  height: 270px;
-  width: 180px;
+  transition: transform ease-out 0.6s;
 }
 
 .Card img {
-  transition: transform ease-out 0.6s;
-  height: 100%;
-  width: 100%;
+  height: 270px;
+  border-radius: 5px;
 }
 
-.Card img:hover {
+.Card:hover {
   transform: scale(1.1);
   cursor: pointer;
+}
+
+.title {
+  cursor: pointer;
+  color: white;
+  margin: 0.5rem;
+}
+
+@media (max-width: 650px) {
+  .Card img {
+    height: 180px;
+  }
 }

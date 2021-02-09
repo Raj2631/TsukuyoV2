@@ -1,3 +1,17 @@
+.FullDescription h1 {
+  color: #fff;
+}
+
+.box1 {
+  width: 30%;
+  height: 50%;
+}
+
+.box1 img {
+  height: 100%;
+  width: 100%;
+}
+
 .Flex {
   display: flex;
   width: 90%;
@@ -10,7 +24,6 @@
 
 .Main {
   width: 60%;
-  overflow: hidden;
 }
 
 .Main h1 {
@@ -19,9 +32,9 @@
 }
 
 .Main p {
-  max-height: 300px;
   overflow: auto;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .Main > h2 > span {
@@ -53,8 +66,28 @@
   transform: scale(0.9);
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1200px) {
   .Flex {
     flex-direction: column;
+  }
+
+  .Main {
+    width: 90%;
+    margin: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .FullDescription h1 {
+    font-size: 16px;
+  }
+
+  .box1 {
+    width: 200px;
+    height: 300px;
+  }
+
+  .Main {
+    text-align: center;
   }
 }

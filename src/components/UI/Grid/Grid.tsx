@@ -14,7 +14,7 @@ type props = {
 function Grid(props: props) {
   const history = useHistory();
   const clickHandler = (id: number) => {
-    history.push(`/id/${id}`);
+    history.push(`/details/${id}`);
   };
 
   return (

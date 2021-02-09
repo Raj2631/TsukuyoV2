@@ -12,6 +12,10 @@
   margin-left: 2rem;
   font-size: 18px;
 }
+.Backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 50;
+}
 
 @media screen and (max-width: 800px) {
   .App > section {
