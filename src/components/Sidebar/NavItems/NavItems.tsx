@@ -10,8 +10,12 @@ function NavItems({ closeSidebar }: props) {
   const routes = [
     {
       path: '/',
-      name: 'Popular',
+      name: 'Ongoing',
       exact: true,
+    },
+    {
+      path: '/popular',
+      name: 'Popular',
     },
     {
       path: '/top',

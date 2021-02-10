@@ -6,6 +6,7 @@ import Popular from '../containers/Popular/Popular';
 import SearchResults from '../containers/SearchResults/SearchResults';
 import Top from '../containers/Top/Top';
 import Error from '../containers/Error/Error';
+import Ongoing from '../containers/Ongoing/Ongoing';
 
 type Liked = {
   title: string;
@@ -28,8 +29,9 @@ interface Props {
 const Routes = ({ addToFav, removeFromFav, likedData }: Props) => {
   return (
     <Switch>
-      <Route exact path="/" component={Popular} />
+      <Route exact path="/" component={Ongoing} />
       <Route path="/top" component={Top} />
+      <Route path="/popular" component={Popular} />
 
       <Route path="/favorites" render={() => <Favorites liked={likedData} />} />
       <Route exact path="/search/:query" component={SearchResults} />
@@ -43,6 +45,7 @@ const Routes = ({ addToFav, removeFromFav, likedData }: Props) => {
           />
         )}
       />
+
       <Route path="/" component={Error} />
     </Switch>
   );

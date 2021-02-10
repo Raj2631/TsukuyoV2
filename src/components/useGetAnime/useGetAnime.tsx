@@ -8,7 +8,7 @@ type Props = {
 };
 
 const useGetAnime = ({ page, endpoint }: Props) => {
-  const { data, isFetching, isError } = useQuery('animeData', () =>
+  const { data, isFetching, isError } = useQuery(endpoint, () =>
     axios.get(`${API}/${page}/${endpoint}`)
   );
 

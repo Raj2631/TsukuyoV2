@@ -40,7 +40,7 @@ function FullDescription(props: props) {
       try {
         const res = await fetch(`https://api.jikan.moe/v3/anime/${id}`);
         const data = await res.json();
-
+        console.log(data);
         if (setState) {
           const animeExists = props.likedArr.some(
             (anime) => anime.mal_id === data.mal_id
