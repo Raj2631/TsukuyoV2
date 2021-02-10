@@ -25,4 +25,8 @@
     max-height: 180px;
     max-width: 200px;
   }
+
+  .title {
+    font-size: 12px;
+  }
 }

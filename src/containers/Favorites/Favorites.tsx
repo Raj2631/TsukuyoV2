@@ -1,5 +1,6 @@
 import React from 'react';
 import Grid from '../../components/UI/Grid/Grid';
+import classes from './Favorites.module.css';
 
 type props = {
   liked: {
@@ -11,7 +12,7 @@ type props = {
 
 function Favorites(props: props) {
   return (
-    <div>
+    <div className={classes.Favorites}>
       <h1>Your Favorite Animes</h1>
       {props.liked.length ? (
         <Grid animeData={props.liked} />
