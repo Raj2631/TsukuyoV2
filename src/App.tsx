@@ -1,15 +1,11 @@
 import React, { CSSProperties, useState, useEffect } from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import './App.css';
 import Sidebar from './components/Sidebar/Sidebar';
 import Search from './components/UI/Search/Search';
-import Popular from './containers/Popular/Popular';
-import Top from './containers/Top/Top';
-import Favorites from './containers/Favorites/Favorites';
-import SearchResults from './containers/SearchResults/SearchResults';
-import FullDescription from './containers/FullDescription/FullDescription';
 import HamburgerMenu from './components/UI/HamburgerMenu/HamburgerMenu';
-import Error from './containers/Error/Error';
+import Routes from './routes/Routes';
 
 type liked = {
   title: string;
@@ -22,6 +18,15 @@ type likeData = {
   image_url: string;
   mal_id: number;
 }[];
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 3600,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 function App() {
   const [searchInput, setSearchInput] = useState('');
@@ -70,42 +75,27 @@ function App() {
 
   return (
     <div className="App">
-      <Sidebar show={sidebar} closeSidebar={toggleMenu} />
-      <section>
-        <section style={styleToolbar}>
-          <HamburgerMenu click={toggleMenu} />
-          <p className="para">Animes</p>
-          <Search
-            val={searchInput}
-            submit={submitHandler}
-            changeHandler={inputChangeHandler}
-          />
+      <QueryClientProvider client={queryClient}>
+        <Sidebar show={sidebar} closeSidebar={toggleMenu} />
+        <section>
+          <section style={styleToolbar}>
+            <HamburgerMenu click={toggleMenu} />
+            <p className="para">Animes</p>
+            <Search
+              val={searchInput}
+              submit={submitHandler}
+              changeHandler={inputChangeHandler}
+            />
+          </section>
+          <main>
+            <Routes
+              addToFav={addDataToLocalStorage}
+              removeFromFav={removeDataFromLocalStorage}
+              likedData={likedData}
+            />
+          </main>
         </section>
-        <main>
-          <Switch>
-            <Route exact path="/" component={Popular} />
-            <Route path="/top" component={Top} />
-            <Route
-              path="/favorites"
-              render={() => <Favorites liked={likedData} />}
-            />
-            <Route exact path="/search/:query" component={SearchResults} />
-            <Route
-              path="/details/:id"
-              render={() => (
-                <FullDescription
-                  addToFav={addDataToLocalStorage}
-                  removeFromFav={removeDataFromLocalStorage}
-                  likedArr={likedData}
-                />
-              )}
-            />
-            <Route path="/">
-              <Error />
-            </Route>
-          </Switch>
-        </main>
-      </section>
+      </QueryClientProvider>
     </div>
   );
 }

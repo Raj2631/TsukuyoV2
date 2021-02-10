@@ -10,7 +10,16 @@ type props = {
 };
 
 function Favorites(props: props) {
-  return <Grid animeData={props.liked} />;
+  return (
+    <div style={{ color: '#ffffff' }}>
+      <h1 style={{ marginBottom: '4rem' }}>Your Favorite Animes</h1>
+      {props.liked.length ? (
+        <Grid animeData={props.liked} />
+      ) : (
+        <p>You don't have any animes marked as favorite.</p>
+      )}
+    </div>
+  );
 }
 
 export default Favorites;

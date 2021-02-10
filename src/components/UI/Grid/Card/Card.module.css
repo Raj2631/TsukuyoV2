@@ -3,7 +3,9 @@
 }
 
 .Card img {
-  height: 270px;
+  max-height: 270px;
+  max-width: 300px;
+
   border-radius: 5px;
 }
 
@@ -20,6 +22,7 @@
 
 @media (max-width: 650px) {
   .Card img {
-    height: 180px;
+    max-height: 180px;
+    max-width: 200px;
   }
 }

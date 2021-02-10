@@ -24,6 +24,7 @@
 
 .Main {
   width: 60%;
+  text-align: center;
 }
 
 .Main h1 {
@@ -79,15 +80,11 @@
 
 @media (max-width: 600px) {
   .FullDescription h1 {
-    font-size: 16px;
+    font-size: 20px;
   }
 
   .box1 {
     width: 200px;
     height: 300px;
-  }
-
-  .Main {
-    text-align: center;
   }
 }

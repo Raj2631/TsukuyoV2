@@ -1,38 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { API } from '../../utility';
+import React, { useState } from 'react';
 import Grid from '../../components/UI/Grid/Grid';
+import useGetAnime from '../../components/useGetAnime/useGetAnime';
 
-type animeData = {
-  image_url: string;
-  mal_id: number;
-  title: string;
-}[];
-
+const styles = { color: '#fff', marginBottom: '4rem' };
+const endpoint = 'tv';
 function Top() {
-  const [animeData, setAnimeData] = useState<animeData>([]);
   const [page] = useState<number>(1);
+  const { animeData, loading } = useGetAnime({ page, endpoint });
 
-  useEffect(() => {
-    let setState = true;
-    async function fetchData() {
-      try {
-        const res = await fetch(`${API}/${page}/tv`);
-        const data = await res.json();
-        if (setState) {
-          setAnimeData(data.top);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    }
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
-    fetchData();
-    return () => {
-      setState = false;
-    };
-  }, [page]);
-
-  return <Grid animeData={animeData} />;
+  return (
+    <>
+      <h1 style={styles}>Top Animes</h1>
+      <Grid animeData={animeData} />
+    </>
+  );
 }
 
 export default Top;
