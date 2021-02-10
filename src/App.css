@@ -14,6 +14,13 @@
   font-size: 18px;
 }
 
+.Toolbar {
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 @media screen and (max-width: 800px) {
   .App > section {
     margin-left: 0;

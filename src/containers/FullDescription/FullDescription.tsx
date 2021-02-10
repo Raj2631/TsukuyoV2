@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import axios from 'axios';
 import classes from './FullDescription.module.css';
 
 type animeData = {
@@ -29,37 +31,23 @@ interface IRouterParams {
 }
 
 function FullDescription(props: props) {
-  const [animeData, setAnimeData] = useState<null | animeData>(null);
   const { id } = useParams<IRouterParams>();
+  const { data, isFetching, isError } = useQuery('animeDetails', () =>
+    axios.get(`https://api.jikan.moe/v3/anime/${id}`)
+  );
 
-  const [isLiked, setIsLiked] = useState<boolean>();
+  if (isFetching) {
+    return <p>Loading...</p>;
+  }
 
-  useEffect(() => {
-    let setState = true;
-    async function fetchData() {
-      try {
-        const res = await fetch(`https://api.jikan.moe/v3/anime/${id}`);
-        const data = await res.json();
-        console.log(data);
-        if (setState) {
-          const animeExists = props.likedArr.some(
-            (anime) => anime.mal_id === data.mal_id
-          );
+  if (isError) {
+    return <p>Oops... Something went wrong.</p>;
+  }
 
-          if (animeExists) {
-            setIsLiked(true);
-          } else setIsLiked(false);
-          setAnimeData(data);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    fetchData();
-    return () => {
-      setState = false;
-    };
-  }, [id, props.likedArr]);
+  const animeData = data?.data;
+  const existsInFavorites = props.likedArr.some(
+    (anime) => anime.mal_id === data?.data.mal_id
+  );
 
   let btn;
   if (animeData) {
@@ -69,7 +57,7 @@ function FullDescription(props: props) {
       title: animeData.title,
     };
 
-    btn = isLiked ? (
+    btn = existsInFavorites ? (
       <button
         onClick={() => props.removeFromFav(animeData.mal_id)}
         className={classes.Liked}

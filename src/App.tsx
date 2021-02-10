@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import './App.css';
@@ -33,13 +33,6 @@ function App() {
   const [likedData, setLikedData] = useState<likeData>([]);
   const history = useHistory();
   const [sidebar, setSidebar] = useState(false);
-
-  const styleToolbar: CSSProperties = {
-    height: '100px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  };
 
   useEffect(() => {
     const data = localStorage.getItem('data') || '[]';
@@ -78,7 +71,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <Sidebar show={sidebar} closeSidebar={toggleMenu} />
         <section>
-          <section style={styleToolbar}>
+          <section className="Toolbar">
             <HamburgerMenu click={toggleMenu} />
             <p className="para">Animes</p>
             <Search
