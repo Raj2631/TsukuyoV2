@@ -11,8 +11,8 @@ type props = {
 
 function Favorites(props: props) {
   return (
-    <div style={{ color: '#ffffff' }}>
-      <h1 style={{ marginBottom: '4rem' }}>Your Favorite Animes</h1>
+    <div>
+      <h1>Your Favorite Animes</h1>
       {props.liked.length ? (
         <Grid animeData={props.liked} />
       ) : (

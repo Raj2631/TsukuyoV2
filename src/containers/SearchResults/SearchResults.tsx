@@ -17,7 +17,7 @@ function SearchResults() {
 
   return (
     <>
-      <h1>Search results for: {query}</h1>
+      <h1>Search results for : {query}</h1>
       <Grid animeData={animeData} />
     </>
   );

@@ -1,12 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useQuery } from 'react-query';
 import { API } from '../../utility';
 import axios from 'axios';
-
-type AnimeData = {
-  image_url: string;
-  mal_id: number;
-  title: string;
-}[];
 
 type Props = {
   page: number;
@@ -14,29 +8,14 @@ type Props = {
 };
 
 const useGetAnime = ({ page, endpoint }: Props) => {
-  const [animeData, setAnimeData] = useState<AnimeData>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        setLoading(true);
-        const data = await axios.get(`${API}/${page}/${endpoint}`);
-
-        setAnimeData(data?.data?.top);
-        setLoading(false);
-      } catch (err) {
-        setError(true);
-      }
-    }
-    fetchData();
-  }, [page, endpoint]);
+  const { data, isFetching, isError } = useQuery('animeData', () =>
+    axios.get(`${API}/${page}/${endpoint}`)
+  );
 
   return {
-    animeData,
-    loading,
-    error,
+    animeData: data?.data?.top,
+    loading: isFetching,
+    error: isError,
   };
 };
 
