@@ -32,7 +32,7 @@ interface IRouterParams {
 
 function FullDescription(props: props) {
   const { id } = useParams<IRouterParams>();
-  const { data, isFetching, isError } = useQuery('animeDetails', () =>
+  const { data, isFetching, isError } = useQuery(['animeDetails', id], () =>
     axios.get(`https://api.jikan.moe/v3/anime/${id}`)
   );
 
