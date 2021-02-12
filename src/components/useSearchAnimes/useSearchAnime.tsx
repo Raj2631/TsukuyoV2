@@ -1,20 +1,39 @@
-import { useQuery } from 'react-query';
+import { useQuery, useInfiniteQuery } from 'react-query';
 import axios from 'axios';
+import { useRef } from 'react';
 
 type Props = {
-  page: number;
   query: string;
 };
 
-const useSearchAnime = ({ page, query }: Props) => {
-  const { data, isFetching, isError } = useQuery('animeData', () =>
-    axios.get(`https://api.jikan.moe/v3/search/anime?q=${query}&page=${page}`)
+const fetchAnime = async (page: number, query: string) => {
+  const res = await axios.get(
+    `https://api.jikan.moe/v3/search/anime?q=${query}&page=${page}`
   );
+  return res.data.results;
+};
 
+const useSearchAnime = ({ query }: Props) => {
+  const page = useRef(1);
+  const { data, isFetching, isError, fetchNextPage } = useInfiniteQuery(
+    query,
+    async ({ pageParam = page.current }) => {
+      const res = await fetchAnime(pageParam, query);
+      page.current = page.current + 1;
+      return res;
+    },
+    {
+      getNextPageParam() {
+        return page.current;
+      },
+    }
+  );
+  const animeData = data?.pages.reduce((acc, current) => acc.concat(current));
   return {
-    animeData: data?.data?.results,
+    animeData,
     loading: isFetching,
     error: isError,
+    fetchNextPage,
   };
 };
 

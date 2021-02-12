@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
+import { Waypoint } from 'react-waypoint';
 import Grid from '../../components/UI/Grid/Grid';
 import useSearchAnime from '../../components/useSearchAnimes/useSearchAnime';
 interface IRouterParams {
@@ -8,17 +9,21 @@ interface IRouterParams {
 
 function SearchResults() {
   const { query } = useParams<IRouterParams>();
-  const [page] = useState(1);
-  const { animeData, loading } = useSearchAnime({ page, query });
-
-  if (loading) {
+  const { animeData, loading, error, fetchNextPage } = useSearchAnime({
+    query,
+  });
+  if (loading && !animeData) {
     return <p>Loading...</p>;
   }
 
+  if (error) {
+    return <p>Oops, either the data doesn't exist, or something went wrong</p>;
+  }
   return (
     <>
       <h1>Search results for : {query}</h1>
       <Grid animeData={animeData} />
+      <Waypoint topOffset="50px" onEnter={() => fetchNextPage()} />
     </>
   );
 }

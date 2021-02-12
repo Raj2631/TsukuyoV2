@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryCache, QueryClientProvider } from 'react-query';
 import './App.css';
 import Sidebar from './components/Sidebar/Sidebar';
 import Search from './components/UI/Search/Search';
@@ -19,13 +19,17 @@ type likeData = {
   mal_id: number;
 }[];
 
+const cache = new QueryCache();
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 3600,
+      retry: false,
       refetchOnWindowFocus: false,
+      staleTime: Infinity,
     },
   },
+  queryCache: cache,
 });
 
 function App() {

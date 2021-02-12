@@ -11,7 +11,7 @@ type props = {
   }[];
 };
 
-function Grid(props: props) {
+function Grid(props: any) {
   const history = useHistory();
   const clickHandler = (id: number) => {
     history.push(`/details/${id}`);
@@ -19,7 +19,7 @@ function Grid(props: props) {
 
   return (
     <div className={classes.Container}>
-      {props.animeData.map((item) => {
+      {props.animeData.map((item: any) => {
         return (
           <Card key={item.mal_id} clickHandle={clickHandler} anime={item} />
         );

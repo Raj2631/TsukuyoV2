@@ -1,21 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Waypoint } from 'react-waypoint';
 import Grid from '../../components/UI/Grid/Grid';
 import useGetAnime from '../../components/useGetAnime/useGetAnime';
 
 const endpoint = 'tv';
 
 function Top() {
-  const [page] = useState<number>(1);
-  const { animeData, loading } = useGetAnime({ page, endpoint });
+  const { animeData, loading, error, fetchNextPage } = useGetAnime({
+    endpoint,
+  });
 
-  if (loading) {
+  if (loading && !animeData) {
     return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Oops, either the data doesn't exist, or something went wrong</p>;
   }
 
   return (
     <>
       <h1>Top Animes</h1>
       <Grid animeData={animeData} />
+      <Waypoint topOffset="50px" onEnter={() => fetchNextPage()} />
+      {error && animeData && <p>Oops!! There is no more data!</p>}
     </>
   );
 }

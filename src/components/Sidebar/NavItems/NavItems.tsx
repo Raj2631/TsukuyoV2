@@ -26,6 +26,7 @@ function NavItems({ closeSidebar }: props) {
       name: 'Favorites',
     },
   ];
+
   return (
     <div className={classes.NavItems}>
       {routes.map((route) => (
