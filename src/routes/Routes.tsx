@@ -29,8 +29,8 @@ interface Props {
 const Routes = ({ addToFav, removeFromFav, likedData }: Props) => {
   return (
     <Switch>
-      <Route exact path="/" component={Ongoing} />
-      <Route path="/top" component={Top} />
+      <Route path="/" component={Top} exact />
+      <Route path="/ongoing" component={Ongoing} />
       <Route path="/popular" component={Popular} />
 
       <Route path="/favorites" render={() => <Favorites liked={likedData} />} />

@@ -20,7 +20,7 @@ function Top() {
 
   return (
     <>
-      <h1>Top Animes</h1>
+      <h1>Top Rated Animes</h1>
       <Grid animeData={animeData} />
       <Waypoint topOffset="50px" onEnter={() => fetchNextPage()} />
       {error && animeData && <p>Oops!! There is no more data!</p>}

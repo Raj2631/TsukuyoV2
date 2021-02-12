@@ -21,7 +21,7 @@ function Popular() {
 
   return (
     <>
-      <h1>Ongoing Animes</h1>
+      <h1>Popular Animes</h1>
       <Grid animeData={animeData} />
       <Waypoint topOffset="50px" onEnter={() => fetchNextPage()} />
       {error && animeData && <p>Oops!! There is no more data!</p>}
