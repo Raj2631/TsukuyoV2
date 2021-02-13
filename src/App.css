@@ -21,15 +21,16 @@
   align-items: center;
 }
 
+.App main {
+  margin: 2rem 1rem;
+}
+
 @media screen and (max-width: 800px) {
   .App > section {
     margin-left: 0;
   }
+
   .para {
     display: none;
-  }
-
-  .App main {
-    margin: 0 1rem;
   }
 }

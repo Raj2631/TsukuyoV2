@@ -28,7 +28,9 @@ const useGetAnime = ({ endpoint }: Props) => {
       },
     }
   );
-  const animeData = data?.pages.reduce((acc, current) => acc.concat(current));
+
+  const animeData = data?.pages.flat();
+
   return {
     animeData,
     loading: isFetching,

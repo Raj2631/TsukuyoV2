@@ -16,14 +16,17 @@ function SearchResults() {
     return <p>Loading...</p>;
   }
 
-  if (error) {
-    return <p>Oops, either the data doesn't exist, or something went wrong</p>;
+  if (error && !animeData) {
+    return <p>Oops!! Something went wrong, please try again later.</p>;
   }
+
   return (
     <>
       <h1>Search results for : {query}</h1>
       <Grid animeData={animeData} />
       <Waypoint topOffset="50px" onEnter={() => fetchNextPage()} />
+      {loading && animeData && <p>Loading...</p>}
+      {error && animeData && <p>Oops!! There is no more data!</p>}
     </>
   );
 }
