@@ -70,6 +70,7 @@ function App() {
     setSidebar((prevState: any) => !prevState);
   };
 
+  console.log("removed service worker, and dummy data");
   return (
     <div className="App">
       <QueryClientProvider client={queryClient}>
