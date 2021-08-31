@@ -77,7 +77,7 @@ function App() {
         <section>
           <section className="Toolbar">
             <HamburgerMenu click={toggleMenu} />
-            <p className="para">Animes Testing service worker</p>
+            <p className="para">Animes</p>
 
             <Search
               val={searchInput}
