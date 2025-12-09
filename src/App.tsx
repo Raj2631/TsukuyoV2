@@ -9,15 +9,15 @@ import Routes from "./routes/Routes";
 
 type liked = {
   title: string;
-  image_url: string;
+  images: {
+    jpg: {
+      image_url: string;
+    };
+  };
   mal_id: number;
 };
 
-type likeData = {
-  title: string;
-  image_url: string;
-  mal_id: number;
-}[];
+type likeData = liked[];
 
 const cache = new QueryCache();
 

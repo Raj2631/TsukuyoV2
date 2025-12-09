@@ -1,26 +1,26 @@
-import { useInfiniteQuery } from 'react-query';
-import { useRef } from 'react';
-import axios from 'axios';
+import { useInfiniteQuery } from "react-query";
+import { useRef } from "react";
+import axios from "axios";
 
 type Props = {
-  endpoint: string;
+  filter: string;
 };
 
-const fetchAnime = async (page: number, endpoint: string) => {
+const fetchAnime = async (page: number, filter: string) => {
   const res = await axios.get(
-    `https://api.jikan.moe/v3/top/anime/${page}/${endpoint}`
+    `https://api.jikan.moe/v4/top/anime?page=${page}&filter=${filter}&type=tv`
   );
-  return res.data.top;
+  return res.data;
 };
 
-const useGetAnime = ({ endpoint }: Props) => {
+const useGetAnime = ({ filter }: Props) => {
   const page = useRef(1);
   const { data, isFetching, isError, fetchNextPage } = useInfiniteQuery(
-    endpoint,
+    filter,
     async ({ pageParam = page.current }) => {
-      const res = await fetchAnime(pageParam, endpoint);
+      const res = await fetchAnime(pageParam, filter);
       page.current = page.current + 1;
-      return res;
+      return res.data;
     },
     {
       getNextPageParam() {

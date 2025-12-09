@@ -1,15 +1,16 @@
-import React from 'react';
-import { Waypoint } from 'react-waypoint';
-import Grid from '../../components/UI/Grid/Grid';
-import useGetAnime from '../../components/useGetAnime/useGetAnime';
+import React from "react";
+import { Waypoint } from "react-waypoint";
+import Grid from "../../components/UI/Grid/Grid";
+import useGetAnime from "../../components/useGetAnime/useGetAnime";
 
-const endpoint = 'airing';
+const filter = "airing";
 
 function Ongoing() {
   const { animeData, loading, error, fetchNextPage } = useGetAnime({
-    endpoint,
+    filter,
   });
 
+  console.log(animeData);
   if (loading && !animeData) {
     return <p>Loading...</p>;
   }

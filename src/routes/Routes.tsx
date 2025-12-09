@@ -1,24 +1,24 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import Favorites from '../containers/Favorites/Favorites';
-import FullDescription from '../containers/FullDescription/FullDescription';
-import Popular from '../containers/Popular/Popular';
-import SearchResults from '../containers/SearchResults/SearchResults';
-import Top from '../containers/Top/Top';
-import Error from '../containers/Error/Error';
-import Ongoing from '../containers/Ongoing/Ongoing';
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import Favorites from "../containers/Favorites/Favorites";
+import FullDescription from "../containers/FullDescription/FullDescription";
+import Popular from "../containers/Popular/Popular";
+import SearchResults from "../containers/SearchResults/SearchResults";
+import Top from "../containers/Top/Top";
+import Error from "../containers/Error/Error";
+import Ongoing from "../containers/Ongoing/Ongoing";
 
 type Liked = {
   title: string;
-  image_url: string;
+  images: {
+    jpg: {
+      image_url: string;
+    };
+  };
   mal_id: number;
 };
 
-type LikeData = {
-  title: string;
-  image_url: string;
-  mal_id: number;
-}[];
+type LikeData = Liked[];
 
 interface Props {
   addToFav: (item: Liked) => void;

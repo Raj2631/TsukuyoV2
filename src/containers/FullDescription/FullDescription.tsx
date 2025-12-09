@@ -1,20 +1,16 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import { useQuery } from 'react-query';
-import axios from 'axios';
-import classes from './FullDescription.module.css';
-
-type animeData = {
-  image_url: string;
-  synopsis: string;
-  title: string;
-  score: number;
-  mal_id: number;
-};
+import React from "react";
+import { useParams } from "react-router-dom";
+import { useQuery } from "react-query";
+import axios from "axios";
+import classes from "./FullDescription.module.css";
 
 type liked = {
   title: string;
-  image_url: string;
+  images: {
+    jpg: {
+      image_url: string;
+    };
+  };
   mal_id: number;
 };
 
@@ -32,8 +28,8 @@ interface IRouterParams {
 
 function FullDescription(props: props) {
   const { id } = useParams<IRouterParams>();
-  const { data, isFetching, isError } = useQuery(['animeDetails', id], () =>
-    axios.get(`https://api.jikan.moe/v3/anime/${id}`)
+  const { data, isFetching, isError } = useQuery(["animeDetails", id], () =>
+    axios.get(`https://api.jikan.moe/v4/anime/${id}`)
   );
 
   if (isFetching) {
@@ -44,16 +40,16 @@ function FullDescription(props: props) {
     return <p>Oops... Something went wrong.</p>;
   }
 
-  const animeData = data?.data;
+  const animeData = data?.data?.data;
   const existsInFavorites = props.likedArr.some(
-    (anime) => anime.mal_id === data?.data.mal_id
+    (anime) => anime.mal_id === animeData.mal_id
   );
 
   let btn;
   if (animeData) {
     const item: liked = {
       mal_id: animeData.mal_id,
-      image_url: animeData.image_url,
+      images: animeData.images,
       title: animeData.title,
     };
 
@@ -78,12 +74,12 @@ function FullDescription(props: props) {
           <h1>{animeData.title}</h1>
           <div className={classes.Flex}>
             <div className={classes.box1}>
-              <img src={animeData.image_url} alt={animeData.title} />
+              <img src={animeData.images.jpg.image_url} alt={animeData.title} />
             </div>
             <div className={classes.Main}>
               <h1>Synopsis</h1>
               <p>
-                {animeData.synopsis.replace('[Written by MAL Rewrite]', '')}
+                {animeData.synopsis.replace("[Written by MAL Rewrite]", "")}
               </p>
               <h2>
                 <span>Rating:</span> {animeData.score}

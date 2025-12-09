@@ -1,13 +1,13 @@
-import React from 'react';
-import { Waypoint } from 'react-waypoint';
-import Grid from '../../components/UI/Grid/Grid';
-import useGetAnime from '../../components/useGetAnime/useGetAnime';
+import React from "react";
+import { Waypoint } from "react-waypoint";
+import Grid from "../../components/UI/Grid/Grid";
+import useGetAnime from "../../components/useGetAnime/useGetAnime";
 
-const endpoint = 'tv';
+const filter = "";
 
 function Top() {
   const { animeData, loading, error, fetchNextPage } = useGetAnime({
-    endpoint,
+    filter,
   });
 
   if (loading && !animeData) {

@@ -1,9 +1,13 @@
-import React from 'react';
-import classes from './Card.module.css';
+import React from "react";
+import classes from "./Card.module.css";
 
 type props = {
   anime: {
-    image_url: string;
+    images: {
+      jpg: {
+        image_url: string;
+      };
+    };
     mal_id: number;
     title: string;
   };
@@ -16,7 +20,7 @@ function Card(props: props) {
       onClick={() => props.clickHandle(props.anime.mal_id)}
       className={classes.Card}
     >
-      <img src={props.anime.image_url} alt="Anime img" />
+      <img src={props.anime.images.jpg.image_url} alt="Anime img" />
       <p className={classes.title}>{props.anime.title}</p>
     </div>
   );

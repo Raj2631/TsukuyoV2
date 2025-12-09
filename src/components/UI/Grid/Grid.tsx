@@ -1,15 +1,7 @@
-import React from 'react';
-import classes from './Grid.module.css';
-import Card from './Card/Card';
-import { useHistory } from 'react-router-dom';
-
-type props = {
-  animeData: {
-    image_url: string;
-    mal_id: number;
-    title: string;
-  }[];
-};
+import React from "react";
+import classes from "./Grid.module.css";
+import Card from "./Card/Card";
+import { useHistory } from "react-router-dom";
 
 function Grid(props: any) {
   const history = useHistory();

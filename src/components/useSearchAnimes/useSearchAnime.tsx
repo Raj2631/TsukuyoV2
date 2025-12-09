@@ -1,6 +1,6 @@
-import { useInfiniteQuery } from 'react-query';
-import axios from 'axios';
-import { useRef } from 'react';
+import { useInfiniteQuery } from "react-query";
+import axios from "axios";
+import { useRef } from "react";
 
 type Props = {
   query: string;
@@ -8,7 +8,7 @@ type Props = {
 
 const fetchAnime = async (page: number, query: string) => {
   const res = await axios.get(
-    `https://api.jikan.moe/v3/search/anime?q=${query}&page=${page}`
+    `https://api.jikan.moe/v4/search/anime?q=${query}&page=${page}`
   );
   return res.data.results;
 };

@@ -1,14 +1,14 @@
-import React from 'react';
-import { Waypoint } from 'react-waypoint';
+import React from "react";
+import { Waypoint } from "react-waypoint";
 
-import Grid from '../../components/UI/Grid/Grid';
-import useGetAnime from '../../components/useGetAnime/useGetAnime';
+import Grid from "../../components/UI/Grid/Grid";
+import useGetAnime from "../../components/useGetAnime/useGetAnime";
 
-const endpoint = 'bypopularity';
+const filter = "bypopularity";
 
 function Popular() {
   const { animeData, loading, error, fetchNextPage } = useGetAnime({
-    endpoint,
+    filter,
   });
 
   if (loading && !animeData) {

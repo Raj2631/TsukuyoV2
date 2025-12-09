@@ -1,16 +1,21 @@
-import React from 'react';
-import Grid from '../../components/UI/Grid/Grid';
-import classes from './Favorites.module.css';
+import React from "react";
+import Grid from "../../components/UI/Grid/Grid";
+import classes from "./Favorites.module.css";
 
 type props = {
   liked: {
     mal_id: any;
     title: string;
-    image_url: string;
+    images: {
+      jpg: {
+        image_url: string;
+      };
+    };
   }[];
 };
 
 function Favorites(props: props) {
+  console.log(props.liked);
   return (
     <div className={classes.Favorites}>
       <h1>Your Favorite Animes</h1>
