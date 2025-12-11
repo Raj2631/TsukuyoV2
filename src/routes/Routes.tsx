@@ -18,12 +18,12 @@ type Liked = {
   mal_id: number;
 };
 
-type LikeData = Liked[];
+type LikedData = Liked[];
 
 interface Props {
   addToFav: (item: Liked) => void;
   removeFromFav: (id: number) => void;
-  likedData: LikeData;
+  likedData: LikedData;
 }
 
 const Routes = ({ addToFav, removeFromFav, likedData }: Props) => {
@@ -41,7 +41,7 @@ const Routes = ({ addToFav, removeFromFav, likedData }: Props) => {
           <FullDescription
             addToFav={addToFav}
             removeFromFav={removeFromFav}
-            likedArr={likedData}
+            likedData={likedData}
           />
         )}
       />

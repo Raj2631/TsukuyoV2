@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import classes from "./FullDescription.module.css";
 
-type liked = {
+type Liked = {
   title: string;
   images: {
     jpg: {
@@ -14,12 +14,12 @@ type liked = {
   mal_id: number;
 };
 
-type likedArr = liked[];
+type LikedArr = Liked[];
 
 type props = {
-  addToFav: (item: liked) => void;
+  addToFav: (item: Liked) => void;
   removeFromFav: (id: number) => void;
-  likedArr: likedArr;
+  likedData: LikedArr;
 };
 
 interface IRouterParams {
@@ -41,13 +41,13 @@ function FullDescription(props: props) {
   }
 
   const animeData = data?.data?.data;
-  const existsInFavorites = props.likedArr.some(
+  const existsInFavorites = props.likedData.some(
     (anime) => anime.mal_id === animeData.mal_id
   );
 
   let btn;
   if (animeData) {
-    const item: liked = {
+    const item: Liked = {
       mal_id: animeData.mal_id,
       images: animeData.images,
       title: animeData.title,
