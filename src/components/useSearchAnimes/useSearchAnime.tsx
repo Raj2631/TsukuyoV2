@@ -8,9 +8,10 @@ type Props = {
 
 const fetchAnime = async (page: number, query: string) => {
   const res = await axios.get(
-    `https://api.jikan.moe/v4/search/anime?q=${query}&page=${page}`
+    `https://api.jikan.moe/v4/anime?page=${page}&q=${query}`
   );
-  return res.data.results;
+  console.log(res.data.data);
+  return res.data.data;
 };
 
 const useSearchAnime = ({ query }: Props) => {
