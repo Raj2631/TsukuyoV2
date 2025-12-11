@@ -1,4 +1,3 @@
-import React from "react";
 import classes from "./Grid.module.css";
 import Card from "./Card/Card";
 import { useHistory } from "react-router-dom";
@@ -21,3 +20,4 @@ function Grid(props: any) {
 }
 
 export default Grid;
+``;

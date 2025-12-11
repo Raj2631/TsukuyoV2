@@ -1,5 +1,5 @@
-import React from 'react';
-import classes from './Search.module.css';
+import React from "react";
+import classes from "./Search.module.css";
 
 type props = {
   changeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
