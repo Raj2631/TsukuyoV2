@@ -3,21 +3,12 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "axios";
 import classes from "./FullDescription.module.css";
+import { Anime } from "../../types";
 
-type Liked = {
-  title: string;
-  images: {
-    jpg: {
-      image_url: string;
-    };
-  };
-  mal_id: number;
-};
-
-type LikedArr = Liked[];
+type LikedArr = Anime[];
 
 type props = {
-  addToFav: (item: Liked) => void;
+  addToFav: (item: Anime) => void;
   removeFromFav: (id: number) => void;
   likedData: LikedArr;
 };
@@ -47,7 +38,7 @@ function FullDescription(props: props) {
 
   let btn;
   if (animeData) {
-    const item: Liked = {
+    const item: Anime = {
       mal_id: animeData.mal_id,
       images: animeData.images,
       title: animeData.title,

@@ -1,16 +1,9 @@
 import React from "react";
 import classes from "./Card.module.css";
+import { Anime } from "../../../../types";
 
 type props = {
-  anime: {
-    images: {
-      jpg: {
-        image_url: string;
-      };
-    };
-    mal_id: number;
-    title: string;
-  };
+  anime: Anime;
   clickHandle: (id: number) => void;
 };
 

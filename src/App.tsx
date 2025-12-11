@@ -6,18 +6,9 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Search from "./components/UI/Search/Search";
 import HamburgerMenu from "./components/UI/HamburgerMenu/HamburgerMenu";
 import Routes from "./routes/Routes";
+import { Anime } from "./types";
 
-type liked = {
-  title: string;
-  images: {
-    jpg: {
-      image_url: string;
-    };
-  };
-  mal_id: number;
-};
-
-type likeData = liked[];
+type LikedData = Anime[];
 
 const cache = new QueryCache();
 
@@ -34,7 +25,7 @@ const queryClient = new QueryClient({
 
 function App() {
   const [searchInput, setSearchInput] = useState("");
-  const [likedData, setLikedData] = useState<likeData>([]);
+  const [likedData, setLikedData] = useState<LikedData>([]);
   const history = useHistory();
   const [sidebar, setSidebar] = useState(false);
 
@@ -53,7 +44,7 @@ function App() {
     setSearchInput("");
   };
 
-  const addDataToLocalStorage = (item: liked) => {
+  const addDataToLocalStorage = (item: Anime) => {
     const newLikedData = [...likedData, item];
     localStorage.setItem("data", JSON.stringify(newLikedData));
     setLikedData(newLikedData);
